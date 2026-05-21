@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroHub - Tienda de Electrodomésticos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+ 
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1F4E78 0%, #2E5C8A 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+ 
+        header {
+            background: linear-gradient(135deg, #1F4E78 0%, #2E5C8A 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+ 
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+ 
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #1F4E78;
+            font-size: 24px;
+        }
+ 
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+ 
+        .tagline {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+ 
+        .qr-section {
+            background: white;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+ 
+        .qr-section h3 {
+            color: #1F4E78;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+ 
+        .qr-section img {
+            width: 250px;
+            height: 250px;
+            border: 2px solid #1F4E78;
+            border-radius: 8px;
+        }
+ 
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+ 
+        .categories-title {
+            text-align: center;
+            color: white;
+            font-size: 2rem;
+            margin: 2rem 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+ 
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+ 
+        .category {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+ 
+        .category:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+        }
+ 
+        .category-header {
+            background: linear-gradient(135deg, #1F4E78 0%, #2E5C8A 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+ 
+        .products {
+            padding: 1.5rem;
+        }
+ 
+        .product {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+ 
+        .product:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+ 
+        .product-name {
+            font-weight: bold;
+            color: #1F4E78;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+ 
+        .product-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+ 
+        .product-price {
+            background: linear-gradient(135deg, #1F4E78 0%, #2E5C8A 100%);
+            color: white;
+            padding: 0.8rem;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+ 
+        .contact-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 600px;
+            margin: 2rem auto;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+ 
+        .contact-section h2 {
+            color: #1F4E78;
+            margin-bottom: 1rem;
+        }
+ 
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+ 
+        .info-item {
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+ 
+        .info-label {
+            color: #1F4E78;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+ 
+        .info-value {
+            color: #333;
+        }
+ 
+        footer {
+            background: #1F4E78;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+ 
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+ 
+            .categories {
+                grid-template-columns: 1fr;
+            }
+ 
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+ 
+            .categories-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo">⚡</div>
+            <div>
+                <h1>ElectroHub</h1>
+            </div>
+        </div>
+        <p class="tagline">Tu tienda de confianza para electrodomésticos de calidad</p>
+    </header>
+ 
+    <div class="container">
+        <div class="qr-section">
+            <h3>Escanea este código QR</h3>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://electrohub-store.netlify.app" alt="Código QR de ElectroHub">
+            <p style="color: #666; margin-top: 1rem; font-size: 0.9rem;">Accede a nuestro catálogo completo</p>
+        </div>
+ 
+        <h2 class="categories-title">Nuestros Productos</h2>
+ 
+        <div class="categories">
+            <!-- Frigoríficos -->
+            <div class="category">
+                <div class="category-header">🧊 Frigoríficos</div>
+                <div class="products">
+                    <div class="product">
+                        <div class="product-name">Frigorífico Samsung SpaceMax</div>
+                        <div class="product-description">Capacidad 650L, compresor Digital Inverter, dispensador de agua y hielo.</div>
+                        <div class="product-price">€1.299</div>
+                    </div>
+                    <div class="product">
+                        <div class="product-name">Frigorífico LG NeoChef</div>
+                        <div class="product-description">550L, tecnología DoorCooling, ahorro energético A++.</div>
+                        <div class="product-price">€899</div>
+                    </div>
+                    <div class="product">
+                        <div class="product-name">Frigorífico Electrolux IQ500</div>
+                        <div class="product-description">Capacidad 580L, compresor silencioso, zona fresca selectable.</div>
+                        <div class="product-price">€749</div>
+                    </div>
+                    <div class="product">
+                        <div class="product-name">Frigorífico Beko 500L</div>
+                        <div class="product-description">500L, control de temperatura digital, bandejas cristal ajustables.</div>
+                        <div class="product-price">€499</div>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- Lavadoras -->
+            <div class="category">
+                <div class="category-header">🌊 Lavadoras</div>
+                <div class="products">
+                    <div class="product">
+                        <div class="product-name">Lavadora Whirlpool 10kg</div>
+                        <div class="product-description">10kg capacidad, 1200 rpm, 15 programas de lavado, sensor de carga automático.</div>
+                        <div class="product-price">€599</div>
+                    </div>
+                    <div class="product">
+                        <div class="product-name">Lavadora Bosch WAX32KH 9kg</div>
+                        <div class="product-description">9kg, motor sin escobillas, EcoSilence, 50 dB de ruido.</div>
+                        <div class="product-price">€549</div>
+                    </div>
+                    <div class="product">
+                        <div class="product-name">Lavadora AEG L9FEC969 10kg</div>
+                        <div class="product-description">10kg, WiFi integrado, motor Öko Inverter, detección de tejido inteligente.</div>
+                        <div class="product-price">€729</div>
+                    </div>
+                    <div class="product">
+                        <div class="product-name">Lavadora Candy 8kg</div>
+                        <div class="product-description">8kg, 1400 rpm, ciclo rápido 14 minutos, bajo consumo energético.</div>
+                        <div class="product-price">€379</div>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- Televisores -->
+            <div class="category">
+                <div class="category-header">📺 Televisores</div>
+                <div class="products">
+                    <div class="product">
+                        <div class="product-name">Samsung QLED 55" 4K</div>
+                        <div class="product-description">55 pulgadas, 4K HDR, tasa de refresco 120Hz, Smart TV, Quantum Dot.</div>
+                        <div class="product-price">€799</div>
+                    </div>
+                    <div class="product">
+                        <div class="product-name">LG OLED 65" 4K</div>
+                        <div class="product-description">65 pulgadas, OLED, 4K, 120Hz, procesador α9, Dolby Vision Atmos.</div>
+                        <div class="product-price">€1.599</div>
+                    </div>
+                    <div class="product">
+                        <div class="product-name">Sony Bravia 50" 4K</div>
+                        <div class="product-description">50 pulgadas, 4K HDR, procesador X-Reality PRO, Triluminos Display.</div>
+                        <div class="product-price">€649</div>
+                    </div>
+                    <div class="product">
+                        <div class="product-name">TCL 43" Smart Full HD</div>
+                        <div class="product-description">43 pulgadas, Full HD, Smart TV, 2 x 8W altavoces, bajo consumo.</div>
+                        <div class="product-price">€299</div>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- Aire Acondicionado -->
+            <div class="category">
+                <div class="category-header">❄️ Aire Acondicionado</div>
+                <div class="products">
+                    <div class="product">
+                        <div class="product-name">Daikin Comfora 3000 BTU</div>
+                        <div class="product-description">3000 BTU, inverter automático, WiFi integrado, modo silencioso 22dB.</div>
+                        <div class="product-price">€549</div>
+                    </div>
+                    <div class="product">
+                        <div class="product-name">Midea Grupo Split 5000 BTU</div>
+                        <div class="product-description">5000 BTU, refrigerante eco, instalación fácil, control remoto inteligente.</div>
+                        <div class="product-price">€429</div>
+                    </div>
+                    <div class="product">
+                        <div class="product-name">Fujitsu ASY 9000 BTU</div>
+                        <div class="product-description">9000 BTU, climatizador de precisión, humidificación, filtro HEPA.</div>
+                        <div class="product-price">€899</div>
+                    </div>
+                    <div class="product">
+                        <div class="product-name">LG Dual Cool 6000 BTU</div>
+                        <div class="product-description">6000 BTU, compresor Inverter Plus, bajo ruido, bajo consumo energético.</div>
+                        <div class="product-price">€599</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="contact-section">
+        <h2>📞 Contacta con Nosotros</h2>
+        <div class="contact-info">
+            <div class="info-item">
+                <div class="info-label">Teléfono</div>
+                <div class="info-value">+34 972 XXX XXX</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Email</div>
+                <div class="info-value">info@electrohub.es</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Dirección</div>
+                <div class="info-value">Girona, Catalonia</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Horario</div>
+                <div class="info-value">L-S: 9h-20h</div>
+            </div>
+        </div>
+    </div>
+ 
+    <footer>
+        <p>&copy; 2026 ElectroHub - Todos los derechos reservados | Transformación Digital en Marcha</p>
+    </footer>
+</body>
+</html>
